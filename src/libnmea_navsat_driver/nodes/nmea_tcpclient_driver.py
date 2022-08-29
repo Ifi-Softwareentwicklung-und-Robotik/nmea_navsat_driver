@@ -13,7 +13,7 @@ def main(args=None):
     driver = Ros2NMEADriver()
 
     try:
-        gnss_ip = driver.declare_parameter('ip', '192.168.131.22').value
+        gnss_host = driver.declare_parameter('host', '192.168.131.22').value
         gnss_port = driver.declare_parameter('port', 9001).value
         buffer_size = driver.declare_parameter('buffer_size', 4096).value
     except KeyError as e:
@@ -22,7 +22,7 @@ def main(args=None):
 
     frame_id = driver.get_frame_id()
 
-    driver.get_logger().info("Using gnss sensor with ip {} and port {}".format(gnss_ip, gnss_port))
+    driver.get_logger().info("Using gnss sensor with ip {} and port {}".format(gnss_host, gnss_port))
 
     # Connection-loop: connect and keep receiving. If receiving fails, reconnect
     # Connect to the gnss sensor using tcp
