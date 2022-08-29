@@ -28,11 +28,8 @@ def main(args=None):
     # Connect to the gnss sensor using tcp
     while rclpy.ok():
         try:
-            # Create a socket
-            gnss_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-            # Connect to the gnss sensor
-            gnss_socket.connect((gnss_ip, gnss_port))
+            # Create socket and connect to the gnss sensor
+            gnss_socket = socket.create_connection((gnss_host, gnss_port))
         except socket.error as exc:
             driver.get_logger().error("Caught exception socket.error when setting up socket: %s" % exc)
             sys.exit(1)
